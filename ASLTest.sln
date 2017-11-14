@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASLTest", "ASLTest\ASLTest.csproj", "{64DA5D80-13D5-46B4-8D6C-9AA5EA5054D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACPILib", "ACPILib\ACPILib.csproj", "{065255BD-ADF0-429A-A3B4-C0113BFA415E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMLExplorer", "AMLExplorer\AMLExplorer.csproj", "{9F9D0AE0-922A-47CE-A2D1-1E3A9F29D0B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64DA5D80-13D5-46B4-8D6C-9AA5EA5054D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64DA5D80-13D5-46B4-8D6C-9AA5EA5054D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64DA5D80-13D5-46B4-8D6C-9AA5EA5054D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64DA5D80-13D5-46B4-8D6C-9AA5EA5054D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{065255BD-ADF0-429A-A3B4-C0113BFA415E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{065255BD-ADF0-429A-A3B4-C0113BFA415E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{065255BD-ADF0-429A-A3B4-C0113BFA415E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{065255BD-ADF0-429A-A3B4-C0113BFA415E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F9D0AE0-922A-47CE-A2D1-1E3A9F29D0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F9D0AE0-922A-47CE-A2D1-1E3A9F29D0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F9D0AE0-922A-47CE-A2D1-1E3A9F29D0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F9D0AE0-922A-47CE-A2D1-1E3A9F29D0B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
