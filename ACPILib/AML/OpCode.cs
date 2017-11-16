@@ -11,6 +11,22 @@ namespace ACPILib.AML
 			private set;
 		}
 
+		public ushort CodeValue
+		{
+			get { return (ushort)Code; }
+		}
+
+		public int CodeByteSize
+		{
+			get
+			{
+				if (CodeValue > 0x00FF)
+					return 2;
+
+				return 1;
+			}
+		}
+
 		public OpCodeEnum Code;
 		public ParseArgFlags[] ParseArgs;
 		public InterpreterArgFlags[] RuntimeArgs;

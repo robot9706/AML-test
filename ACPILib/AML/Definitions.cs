@@ -4,6 +4,8 @@
 	{
 		public const int NameSize = 4;
 
+		public const byte ExtendedOpCodePrefix = 0x5B;
+
 		public const byte DualNamePrefix = (byte)OpCodeEnum.DualNamePrefix;
 		public const byte MultiNamePrefix = (byte)OpCodeEnum.MultiNamePrefix;
 

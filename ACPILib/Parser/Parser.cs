@@ -243,7 +243,7 @@ namespace ACPILib.Parser
 					}
 					break;
 				default:
-					amlOp = new AMLOp(OpCodeTable.GetOpcode((ushort)OpCodeEnum.NameField), parent);
+					amlOp = new AMLOp(OpCodeTable.GetOpcode((ushort)OpCodeEnum.NamedField), parent);
 
 					amlOp.Name = Encoding.ASCII.GetString(ReadBytes(4));
 

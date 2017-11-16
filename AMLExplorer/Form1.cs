@@ -1,4 +1,5 @@
-﻿using ACPILib.Parser;
+﻿using ACPILib.AML;
+using ACPILib.Parser2;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -14,11 +15,14 @@ namespace AMLExplorer
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			using (Stream s = File.OpenRead(@"test.aml"))
+			//using (Stream s = File.OpenRead(@"DSDTs\iASL_example.dsdt"))
+			//using (Stream s = File.OpenRead(@"DSDTs\Test_pc.dsdt"))
+			using (Stream s = File.OpenRead(@"DSDTs\QEMU.dsdt"))
 			{
 				s.Seek(36, SeekOrigin.Begin); //Skip header
 
-				AMLOp root = new Parser(s).Parse();
+				//AMLOp root = new Parser(s).Parse();
+				ParseNode root = new Parser(s).Parse();
 
 				TreeNode rootNode = new TreeNode("Root");
 				treeView1.Nodes.Add(rootNode);
@@ -27,18 +31,36 @@ namespace AMLExplorer
 			}
 		}
 
-		private void PopulateNode(AMLOp op, TreeNode root)
+		private void PopulateNode(ParseNode op, TreeNode root)
 		{
 			if (!string.IsNullOrEmpty(op.Name))
 				root.Text += " (" + op.Name + ")";
 
-			if (op.OpCode != null)
+			if (op.Op != null)
 			{
-				root.Nodes.Add("OpCode = " + op.OpCode.ToString());
+				root.Nodes.Add("OpCode = " + op.Op.ToString());
 				root.Nodes.Add("Start = " + op.Start.ToString());
 				root.Nodes.Add("Length = " + op.Length.ToString());
 				root.Nodes.Add("End = " + op.End.ToString());
-				root.Nodes.Add("Value = " + ValueToString(op.Value));
+				if (op.ConstantValue != null)
+				{
+					root.Nodes.Add("Value = " + ValueToString(op.ConstantValue));
+				}
+			}
+
+			if (op.Arguments.Count > 0)
+			{
+				TreeNode nodes = new TreeNode("Arguments");
+				root.Nodes.Add(nodes);
+
+				for (int x = 0; x < op.Op.ParseArgs.Length; x++)
+				{
+					if (op.Op.ParseArgs[x] == ParseArgFlags.DataObjectList || op.Op.ParseArgs[x] == ParseArgFlags.TermList || op.Op.ParseArgs[x] == ParseArgFlags.ObjectList)
+						continue;
+
+					TreeNode newNode = new TreeNode(ValueToString(op.Arguments[x]) + " (" + op.Op.ParseArgs[x].ToString() + ")");
+					nodes.Nodes.Add(newNode);
+				}
 			}
 
 			if (op.Nodes.Count > 0)
@@ -46,9 +68,9 @@ namespace AMLExplorer
 				TreeNode nodes = new TreeNode("Nodes");
 				root.Nodes.Add(nodes);
 
-				foreach (AMLOp ch in op.Nodes)
+				foreach (ParseNode ch in op.Nodes)
 				{
-					TreeNode newNode = new TreeNode((ch.OpCode != null && !string.IsNullOrEmpty(ch.OpCode.Name)) ? ch.OpCode.Name : "Node");
+					TreeNode newNode = new TreeNode((ch.Op != null && !string.IsNullOrEmpty(ch.Op.Name)) ? ch.Op.Name : "Node");
 					nodes.Nodes.Add(newNode);
 
 					PopulateNode(ch, newNode);
@@ -77,6 +99,14 @@ namespace AMLExplorer
 					rt += ValueToString(ar.GetValue(x)) + (x < ar.Length - 1 ? ", " : string.Empty);
 
 				return rt;
+			}
+
+			if (val is ParseNode)
+			{
+				ParseNode node = (ParseNode)val;
+
+				if (node.ConstantValue != null)
+					return ValueToString(node.ConstantValue);
 			}
 
 			return val.ToString();

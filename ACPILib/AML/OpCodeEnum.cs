@@ -141,7 +141,7 @@
 		FieldExternalAccess = 0x03,
 
 		NamePath = 0x002d,
-		NameField = 0x0030,
+		NamedField = 0x0030,
 		ReservedField = 0x0031,
 		AccessField = 0x0032,
 		ByteList = 0x0033,

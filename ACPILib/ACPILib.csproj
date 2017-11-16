@@ -49,6 +49,8 @@
     <Compile Include="AML\OpCodeTable.cs" />
     <Compile Include="AML\OpCodeType.cs" />
     <Compile Include="AML\ParseArgs.cs" />
+    <Compile Include="Parser2\ParseNode.cs" />
+    <Compile Include="Parser2\Parser.cs" />
     <Compile Include="Parser\AMLOp.cs" />
     <Compile Include="Parser\Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
